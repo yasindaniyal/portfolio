@@ -22,11 +22,13 @@ const Education = () => (
               Oct 2021 - Jun 2025 | Islamabad, Pakistan
             </p>
             <div className="flex flex-wrap gap-4">
-              <div className="bg-green-500/20 px-4 py-2 rounded-full border border-green-500/30">
-                <span className="text-green-400 font-semibold">CGPA: 3.63</span>
+              <div className="bg-green-500/20 px-4 py-2 rounded-lg sm:rounded-full border border-green-500/30 text-center">
+                <span className="text-green-400 font-semibold text-sm sm:text-base">
+                  CGPA: 3.63
+                </span>
               </div>
-              <div className="bg-purple-500/20 px-4 py-2 rounded-full border border-purple-500/30">
-                <span className="text-purple-400 font-semibold">
+              <div className="bg-purple-500/20 px-4 py-2 rounded-lg sm:rounded-full border border-purple-500/30 text-center">
+                <span className="text-purple-400 font-semibold text-sm sm:text-base">
                   Final Year Project: Elite Glam (MERN Stack)
                 </span>
               </div>

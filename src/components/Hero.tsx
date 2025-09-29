@@ -33,10 +33,10 @@ const Hero = ({ scrollToSection }: Props) => (
           Yasin Daniyal
         </h1>
 
-        <p className="text-xl md:text-2xl text-gray-300 mb-4 max-w-2xl mx-auto">
+        <p className="text-xl md:text-2xl text-gray-300 mb-4 max-w-2xl mx-auto px-4">
           Frontend Developer | MERN Stack | Pixel-Perfect UI
         </p>
-        <p className="text-lg text-gray-400 mb-8 max-w-3xl mx-auto">
+        <p className="text-lg text-gray-400 mb-8 max-w-3xl mx-auto px-4">
           Fresh Software Engineering graduate (CGPA: 3.63) with hands-on
           experience in full-stack web development. Passionate about delivering
           responsive, user-centric applications through clean code and modern
