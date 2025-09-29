@@ -42,7 +42,7 @@ const Hero = ({ scrollToSection }: Props) => (
           Frontend Developer | MERN Stack | Pixel-Perfect UI
         </p>
         <p className="text-lg text-gray-400 mb-8 max-w-3xl mx-auto px-4">
-          Fresh Software Engineering graduate (CGPA: 3.63) with hands-on
+          Fresh Software Engineering graduate with hands-on
           experience in full-stack web development. Passionate about delivering
           responsive, user-centric applications through clean code and modern
           design.
