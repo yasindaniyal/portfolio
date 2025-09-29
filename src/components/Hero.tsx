@@ -18,8 +18,13 @@ const Hero = ({ scrollToSection }: Props) => (
 
     <div className="text-center z-10 transition-all duration-1000">
       <div className="mb-8">
-        <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-4xl font-bold animate-bounce">
-          YD
+        <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-none shadow-lg">
+          <img
+            // src="/images/profile.jpg"
+            src="profile.jpg"
+            alt="Yasin Daniyal"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
 
