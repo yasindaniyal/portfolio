@@ -26,7 +26,6 @@ const Contact = () => (
           value="linkedin.com/in/yasindaniyal"
           link="https://www.linkedin.com/in/yasindaniyal"
         />
-        
       </div>
 
       <div className="text-center">
@@ -38,7 +37,15 @@ const Contact = () => (
           href="https://mail.google.com/mail/?view=cm&fs=1&to=yasindaniyal.frontend@gmail.com&su=Hello%20Yasin&body=I%20just%20visited%20your%20portfolio!"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
+          className="hidden md:inline-block bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
+        >
+          Say Hello
+        </a>
+
+        {/* Mobile/Tablet button (<768px) */}
+        <a
+          href="mailto:yasindaniyal.frontend@gmail.com?subject=Hello Yasin&body=I just visited your portfolio!"
+          className="md:hidden inline-block bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
         >
           Say Hello
         </a>
