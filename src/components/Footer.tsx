@@ -1,8 +1,7 @@
 const Footer = () => (
-  <footer className="py-8 px-6 border-t border-gray-800 text-center text-gray-400 bg-gray-900">
+  <footer className="py-8 px-6 border-t border-slate-600/50 text-center text-gray-400 bg-[#111c2e]">
     <p>
-      © {new Date().getFullYear()} Yasin Daniyal. All rights reserved. | Built
-      with React & Tailwind CSS
+      © {new Date().getFullYear()} Yasin Daniyal.
     </p>
   </footer>
 );

@@ -1,5 +1,5 @@
-import { LucideIcon } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import type { LucideIcon } from "lucide-react";
+import React from "react";
 
 type Props = {
   Icon: LucideIcon;
@@ -9,63 +9,20 @@ type Props = {
 };
 
 const ContactCard: React.FC<Props> = ({ Icon, title, value, link }) => {
-  const ref = useRef<HTMLAnchorElement | null>(null);
-  const [isCentered, setIsCentered] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => setIsCentered(entry.isIntersecting));
-      },
-      {
-        root: null,
-        rootMargin: "-40% 0px -40% 0px", // middle band of viewport
-        threshold: 0,
-      }
-    );
-
-    const el = ref.current;
-    if (el) observer.observe(el);
-
-    return () => {
-      if (el) observer.unobserve(el);
-      observer.disconnect();
-    };
-  }, []);
-
   return (
     <a
-      ref={ref}
       href={link || "#"}
-      target={link ? "_blank" : undefined}
-      rel="noopener noreferrer"
-      className="group bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-green-500/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-green-500/10 flex items-center gap-4 flex-nowrap"
+      target={link?.startsWith("http") ? "_blank" : undefined}
+      rel={link?.startsWith("http") ? "noopener noreferrer" : undefined}
+      className="group bg-slate-900/70 p-6 rounded-lg border border-slate-800 hover:border-cyan-500/50 transition-colors duration-200 flex items-center gap-4"
     >
-      <Icon className="w-6 h-6 text-green-400 shrink-0" />
-      <div className="min-w-0 max-w-[240px]">
-        <h3 className="text-lg font-semibold text-white">{title}</h3>
-
-        {/* Value text */}
-        <p className="text-gray-300 break-all select-text">
-          {/* Desktop hover effect */}
-          <span className="hidden md:inline-block text-gray-300 group-hover:text-green-400 group-hover:underline transition-all duration-300">
-            {value}
-          </span>
-
-          {/* Mobile center-glow effect */}
-          <span
-            className={`md:hidden inline-block transition-all duration-500 ${
-              isCentered
-                ? "text-green-400 underline scale-105 animate-pulse drop-shadow-md"
-                : "text-gray-300"
-            }`}
-          >
-            {value}
-          </span>
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-cyan-400/10">
+        <Icon className="w-5 h-5 text-cyan-300" />
+      </div>
+      <div className="min-w-0">
+        <h3 className="text-sm font-medium text-slate-400">{title}</h3>
+        <p className="text-white break-all select-text group-hover:text-cyan-300 transition-colors duration-200">
+          <span>{value}</span>
         </p>
       </div>
     </a>

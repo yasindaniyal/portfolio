@@ -1,38 +1,23 @@
+import { motion } from "framer-motion";
+import { experiences } from "../../data/experience";
 import SectionHeader from "../SectionHeader";
 import ExperienceCard from "./ExperienceCard";
 
-const experiences = [
-  {
-    title: "Frontend & UI/UX Developer",
-    company: "Fokus LLC  ",
-    period: "Aug 2024 – Present",
-    description:
-      "Engineered pixel-perfect, responsive layouts in collaboration with designers using Figma. Developed interfaces with HTML5, SCSS, and JavaScript, integrating REST APIs for seamless user experiences. Built reusable components and SCSS mixins to improve scalability and responsiveness. Utilized Git for version control and team collaboration.",
-  },
-  {
-    title: "Frontend Developer",
-    company: "Aarsol",
-    period: "Jul 2023 – Oct 2023",
-    description:
-      "Delivered pixel-perfect, responsive web interfaces with HTML5, SCSS, and JavaScript, ensuring cross-browser consistency. Translated UI/UX designs into high-quality code, optimized frontend performance, and enhanced component reusability to reduce load times and improve scalability.",
-  },
-  {
-    title: "MERN Stack Intern",
-    company: "Cloud-tek",
-    period: "Jun 2022 – Sep 2022",
-    description:
-      "Designed responsive layouts with CSS Flexbox and positioning techniques. Strengthened React.js skills through state management, hooks, and reusable components. Built scalable RESTful APIs with Node.js and Express.js to support multiple projects.",
-  },
-];
-
-
 const Experience = () => (
-  <section id="experience" className="py-20 px-6 bg-gray-800/30">
-    <div className="max-w-6xl mx-auto">
+  <section id="experience" className="relative z-10 border-y border-slate-500/25 bg-[#1d2c46]/90 px-6 py-20">
+    <div className="mx-auto max-w-6xl">
       <SectionHeader title="Experience" />
       <div className="space-y-8">
-        {experiences.map((exp, i) => (
-          <ExperienceCard key={i} {...exp} />
+        {experiences.map((experience, index) => (
+          <motion.div
+            key={`${experience.company}-${experience.period}`}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: index * 0.08 }}
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            <ExperienceCard {...experience} />
+          </motion.div>
         ))}
       </div>
     </div>

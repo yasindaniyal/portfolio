@@ -8,6 +8,9 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects/Projects";
 import Skills from "./components/Skills/Skills";
+import CapabilitySlider from "./components/CapabilitySlider";
+import CustomCursor from "./components/CustomCursor";
+import LiveBackground from "./components/LiveBackground";
 
 function App() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -17,6 +20,7 @@ function App() {
       const sections = [
         "hero",
         "about",
+        "education",
         "experience",
         "projects",
         "skills",
@@ -48,16 +52,21 @@ function App() {
   };
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
-      <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
-      <Hero scrollToSection={scrollToSection} />
-      <About />
-      <Education />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Contact />
-      <Footer />
+    <div className="technical-grid bg-[#172238] text-slate-50 min-h-screen">
+      <LiveBackground />
+      <CustomCursor />
+      <div className="relative z-10">
+        <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
+        <Hero scrollToSection={scrollToSection} />
+        <CapabilitySlider />
+        <About />
+        <Education />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Contact />
+        <Footer />
+      </div>
     </div>
   );
 }

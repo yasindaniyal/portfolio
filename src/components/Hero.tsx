@@ -1,70 +1,133 @@
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
+import { ArrowDownRight, Download, Github } from "lucide-react";
 
 type Props = {
   scrollToSection: (id: string) => void;
 };
 
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.55 } },
+};
+
+const capabilities = [
+  ["01", "Product interfaces", "Responsive, accessible and conversion-aware UI"],
+  ["02", "Application systems", "Auth, roles, real-time data and cloud workflows"],
+  ["03", "Business integrations", "Payments, webhooks, maps and third-party APIs"],
+];
+
 const Hero = ({ scrollToSection }: Props) => (
   <section
     id="hero"
-    className="min-h-screen flex items-center justify-center relative overflow-hidden"
+    className="technical-grid relative flex min-h-screen items-center overflow-hidden bg-[#172238]/90 px-6 pb-16 pt-28"
   >
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20"></div>
-    <div className="absolute inset-0">
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-    </div>
+    <div className="pointer-events-none absolute left-0 top-24 h-px w-24 bg-cyan-400 md:w-40" />
+    <div className="pointer-events-none absolute bottom-12 right-0 h-px w-24 bg-amber-300 md:w-40" />
 
-    <div className="text-center z-10 transition-all duration-1000">
-      <div className="mb-8">
-        <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-none shadow-lg">
-          <img
-            // src="/images/profile.jpg"
-            src="profile.jpg"
-            alt="Yasin Daniyal"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-
+    <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.4 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        initial="hidden"
+        animate="visible"
+        transition={{ staggerChildren: 0.1 }}
       >
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-          Yasin Daniyal
-        </h1>
+        <motion.div
+          variants={itemVariants}
+          className="mb-7 inline-flex items-center gap-3 border-l-2 border-cyan-400 pl-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300"
+        >
+          Full-Stack / Frontend Engineer
+        </motion.div>
 
-        <p className="text-xl md:text-2xl text-gray-300 mb-4 max-w-2xl mx-auto px-4">
-          Frontend Developer | MERN Stack | Pixel-Perfect UI
-        </p>
-        <p className="text-lg text-gray-400 mb-8 max-w-3xl mx-auto px-4">
-          Fresh Software Engineering graduate with hands-on
-          experience in full-stack web development. Passionate about delivering
-          responsive, user-centric applications through clean code and modern
-          design.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <motion.h1
+          variants={itemVariants}
+          className="max-w-3xl text-5xl font-bold leading-[0.98] tracking-[-0.045em] text-white sm:text-6xl md:text-7xl"
+        >
+          I build digital products that work beyond the demo.
+        </motion.h1>
+
+        <motion.p
+          variants={itemVariants}
+          className="mt-7 max-w-2xl text-lg leading-relaxed text-slate-300 md:text-xl"
+        >
+          React and TypeScript experiences backed by secure Firebase systems,
+          real-time workflows and practical product thinking.
+        </motion.p>
+
+        <motion.div
+          variants={itemVariants}
+          className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+        >
           <a
-            href="/yasindaniyal/Yasin_Daniyal_Frontend.pdf"
+            href={`${import.meta.env.BASE_URL}Yasin_Daniyal_Frontend.pdf`}
             download="Yasin_Daniyal_CV.pdf"
-            className="group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 flex items-center gap-2"
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-cyan-400 px-6 py-3.5 font-bold text-slate-950 transition-colors hover:bg-cyan-300"
           >
-            <Download className="w-5 h-5 group-hover:animate-bounce" />
-            Download CV
+            <Download className="h-5 w-5" /> Download CV
           </a>
-
-          <button
-            onClick={() => scrollToSection("contact")}
-            className="border border-gray-600 hover:border-blue-400 px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-blue-400/10 hover:shadow-lg"
+          <a
+            href="https://github.com/yasindaniyal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-md border border-slate-600 px-6 py-3.5 font-bold text-white transition-colors hover:border-cyan-400 hover:text-cyan-300"
           >
-            Get In Touch
+            <Github className="h-5 w-5" /> GitHub
+          </a>
+          <button
+            type="button"
+            onClick={() => scrollToSection("projects")}
+            className="inline-flex items-center justify-center gap-2 px-4 py-3.5 font-semibold text-slate-300 transition-colors hover:text-white"
+          >
+            Explore selected work <ArrowDownRight className="h-4 w-4" />
           </button>
-        </div>
+        </motion.div>
       </motion.div>
+
+      <motion.aside
+        initial={{ opacity: 0, x: 28 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.65, delay: 0.2 }}
+        className="relative"
+      >
+        <div className="absolute -right-3 -top-3 h-full w-full border border-cyan-400/35" />
+        <div className="relative border border-slate-600 bg-[#111c2e] p-6 sm:p-8">
+          <div className="flex items-center gap-4 border-b border-slate-700 pb-6">
+            <div className="h-20 w-20 shrink-0 overflow-hidden border border-slate-600 bg-slate-800">
+              <img
+                src={`${import.meta.env.BASE_URL}profile.jpg`}
+                alt="Yasin Daniyal"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div>
+              <p className="text-xl font-bold text-white">Yasin Daniyal</p>
+              <p className="mt-1 text-sm text-slate-400">Islamabad, Pakistan</p>
+              <p className="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-emerald-300">
+                <span className="h-2 w-2 rounded-full bg-emerald-400" /> Available for opportunities
+              </p>
+            </div>
+          </div>
+
+          <p className="mb-5 mt-6 font-mono text-xs uppercase tracking-[0.2em] text-amber-300">
+            Engineering snapshot
+          </p>
+          <div className="divide-y divide-slate-700">
+            {capabilities.map(([number, title, detail]) => (
+              <div key={number} className="grid grid-cols-[2rem_1fr] gap-3 py-4 first:pt-0">
+                <span className="font-mono text-xs text-cyan-300">{number}</span>
+                <div>
+                  <p className="font-semibold text-white">{title}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-400">{detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-2 border-t border-slate-700 pt-5 font-mono text-xs text-slate-300">
+            {['React 19', 'TypeScript', 'Firebase', 'Node.js'].map((item) => (
+              <span key={item} className="border border-slate-600 px-2.5 py-1.5">{item}</span>
+            ))}
+          </div>
+        </div>
+      </motion.aside>
     </div>
   </section>
 );

@@ -1,153 +1,80 @@
-// src/components/Skills/Skills.tsx
-import React from "react";
-import {
-  FaBootstrap,
-  FaCode,
-  FaCss3Alt,
-  FaDatabase,
-  FaDocker,
-  FaFigma,
-  FaGitAlt,
-  FaHtml5,
-  FaNodeJs,
-  FaReact,
-  FaServer,
-} from "react-icons/fa";
-import { SiFirebase, SiTailwindcss } from "react-icons/si";
+import { motion } from "framer-motion";
+import { Code2, MapPinned, PanelsTopLeft, ShieldCheck, Webhook } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import SectionHeader from "../SectionHeader";
 
-// Main skill bars
-const skillBars = [
+type SkillGroup = {
+  level: string;
+  description: string;
+  skills: string[];
+};
+
+const skillGroups: SkillGroup[] = [
   {
-    skill: "UI/UX Development",
-    level: 95,
-    icon: <FaFigma size={30} color="#F24E1E" />,
-  },
-  { skill: "React.js", level: 90, icon: <FaReact size={30} color="#61DBFB" /> },
-  { skill: "SCSS", level: 90, icon: <FaCss3Alt size={30} color="#CD6799" /> },
-  {
-    skill: "JavaScript",
-    level: 85,
-    icon: <FaHtml5 size={30} color="#F7DF1E" />,
+    level: "Daily use",
+    description: "Core tools used to ship current production work.",
+    skills: ["React", "TypeScript", "JavaScript", "HTML", "CSS / SCSS", "Tailwind CSS", "Firebase", "Git & GitHub"],
   },
   {
-    skill: "Node.js & Express.js",
-    level: 80,
-    icon: <FaNodeJs size={30} color="#68A063" />,
+    level: "Comfortable",
+    description: "Used independently across client and product projects.",
+    skills: ["Node.js", "Express", "PHP", "CodeIgniter 3", "REST APIs", "Firestore Rules", "MySQL", "Figma", "Webpack"],
   },
   {
-    skill: "MongoDB",
-    level: 75,
-    icon: <FaDatabase size={30} color="#4DB33D" />,
+    level: "Familiar",
+    description: "Working knowledge supported by integrations or earlier work.",
+    skills: ["MongoDB", "Bootstrap", "jQuery", "Stripe / SafePay", "Google Maps API", "QuickBooks API"],
   },
 ];
 
-// Tech badges
-const techs = [
-  {
-    name: "Pixel-perfect",
-    icon: <FaCode size={24} color="#FF6F61" />,
-    description: "Implementing precise and accurate UI designs.",
-  },
-  {
-    name: "Figma",
-    icon: <FaFigma size={24} color="#F24E1E" />,
-    description: "Designing and prototyping user interfaces.",
-  },
-  {
-    name: "Firebase Authentication",
-    icon: <SiFirebase size={24} color="#FFCA28" />,
-    description: "Secure user authentication and management.",
-  },
-  {
-    name: "Bootstrap",
-    icon: <FaBootstrap size={24} color="#563d7c" />,
-    description: "Building responsive and mobile-first websites.",
-  },
-  {
-    name: "Git & GitHub",
-    icon: <FaGitAlt size={24} color="#F1502F" />,
-    description: "Version control and collaboration using Git.",
-  },
-  {
-    name: "Tailwind CSS",
-    icon: <SiTailwindcss size={24} color="#38B2AC" />,
-    description: "Rapid styling with utility-first CSS framework.",
-  },
-  {
-    name: "RESTful APIs",
-    icon: <FaServer size={24} color="#F97316" />,
-    description: "Designing and consuming RESTful APIs.",
-  },
-  {
-    name: "Docker",
-    icon: <FaDocker size={24} color="#0db7ed" />,
-    description: "Containerization for consistent development and deployment.",
-  },
+const appliedStrengths: Array<{ title: string; detail: string; Icon: LucideIcon }> = [
+  { title: "Product UI", detail: "Responsive interfaces, design systems and resilient user states.", Icon: PanelsTopLeft },
+  { title: "Secure access", detail: "Authentication, role-based routing and database security rules.", Icon: ShieldCheck },
+  { title: "Payment webhooks", detail: "Signed callbacks, idempotency and server-authoritative status.", Icon: Webhook },
+  { title: "Maps and tracking", detail: "Location search, route context and live operational views.", Icon: MapPinned },
 ];
 
-// SkillBar component
-const SkillBar = ({
-  skill,
-  level,
-  icon,
-}: {
-  skill: string;
-  level: number;
-  icon: React.ReactNode;
-}) => (
-  <div className="flex flex-col">
-    <div className="flex items-center mb-1">
-      <div className="mr-2">{icon}</div>
-      <span className="text-white font-semibold">{skill}</span>
-      <span className="ml-auto text-white">{level}%</span>
-    </div>
-    <div className="w-full bg-gray-700 rounded-full h-3">
-      <div
-        className="bg-blue-500 h-3 rounded-full"
-        style={{ width: `${level}%` }}
-      ></div>
-    </div>
-  </div>
-);
-
-// TechBadge component
-const TechBadge = ({ name, icon }: { name: string; icon: React.ReactNode }) => (
-  <div className="flex items-center gap-2 bg-gray-700/50 text-white px-4 py-2 rounded-full shadow-sm hover:bg-blue-500 transition-colors duration-300 cursor-pointer">
-    {icon}
-    <span>{name}</span>
-  </div>
-);
-
-// Main Skills component
 const Skills = () => (
-  <section id="skills" className="py-20 px-6 bg-gray-800/30">
-    <div className="max-w-6xl mx-auto">
+  <section id="skills" className="relative z-10 border-y border-slate-500/25 bg-[#1d2c46]/90 px-6 py-20">
+    <div className="mx-auto max-w-6xl">
       <SectionHeader title="Skills" />
 
-      <div className="flex flex-col md:flex-row gap-12">
-        {/* Skill Bars */}
-        <div className="flex-1 space-y-6">
-          {skillBars.map((item) => (
-            <SkillBar key={item.skill} {...item} />
-          ))}
-        </div>
-
-        {/* Skills Cards */}
-        <div className="flex-1 flex flex-wrap gap-6 items-start">
-          {techs.map((tech) => (
-            <div
-              key={tech.name}
-              className="flex flex-col justify-between bg-white/5 backdrop-blur-md text-white p-5 rounded-2xl shadow-lg hover:shadow-xl hover:bg-white/10 transition-all duration-300 w-full sm:w-[48%] md:w-full lg:w-[45%]"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                {tech.icon}
-                <span className="font-semibold text-lg">{tech.name}</span>
+      <div className="grid gap-5 lg:grid-cols-3">
+        {skillGroups.map((group, index) => (
+          <motion.article
+            key={group.level}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.08 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="rounded-lg border border-slate-700 bg-slate-900/70 p-6"
+          >
+            <div className="mb-5 flex items-center gap-3">
+              <Code2 className="h-5 w-5 text-cyan-300" />
+              <div>
+                <h3 className="font-bold text-white">{group.level}</h3>
+                <p className="mt-1 text-xs leading-relaxed text-slate-400">{group.description}</p>
               </div>
-              <p className="text-gray-300 text-sm">{tech.description}</p>
             </div>
-          ))}
-        </div>
+            <div className="flex flex-wrap gap-2">
+              {group.skills.map((skill) => (
+                <span key={skill} className="rounded-md border border-slate-600 bg-slate-800/60 px-3 py-2 text-sm text-slate-200">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </motion.article>
+        ))}
+      </div>
+
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {appliedStrengths.map(({ title, detail, Icon }) => (
+          <article key={title} className="rounded-lg border border-slate-700 bg-[#111c2e] p-5 transition-colors hover:border-cyan-400/50">
+            <Icon className="h-5 w-5 text-amber-300" />
+            <h3 className="mt-4 font-bold text-white">{title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-400">{detail}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>

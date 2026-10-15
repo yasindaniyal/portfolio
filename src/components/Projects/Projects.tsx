@@ -1,65 +1,34 @@
+import { useState } from "react";
+import { projects } from "../../data/projects";
 import SectionHeader from "../SectionHeader";
 import ProjectCard from "./ProjectCard";
 
-const projects = [
-  {
-    title: "Finest Studio",
-    type: "Industry Project",
-    description:
-      "Developed a modern, responsive studio website with SCSS, mixins, and optimized performance for creative service showcasing.",
-    technologies: ["HTML5", "SCSS", "JavaScript"],
-  },
-  {
-    title: "Local Service",
-    type: "Industry Project",
-    description:
-      "Web platform prototype enabling users to browse and book local services with a clean UI and responsive design.",
-    technologies: ["React.js", "Tailwind CSS"],
-  },
-  {
-    title: "Property Central",
-    type: "Industry Project",
-    description:
-      "Property listing and management web application with modern UI components, designed for streamlined user experience and scalability.",
-    technologies: ["React.js", "SCSS", "MongoDB"],
-  },
-  {
-    title: "Elite Glam",
-    type: "Final Year Project",
-    // period: "Jul 2024 – Jun 2025",
-    description:
-      "Centralized web platform for salons and skin aesthetic clinics to connect with customers. Developed Admin, Business, and Customer Dashboards for seamless operations and integrated Firebase Authentication for secure, role-based access.",
-    technologies: ["React.js", "Firebase", "Tailwind CSS", "CSS","Node.js","Express.js"],
-  },
-  {
-    title: "Robo App",
-    type: "Semester Project",
-    // period: "Mar 2024 – Jun 2024",
-    description:
-      "React-based web application consuming external APIs to fetch and display JSON data. Implemented async/await for efficient asynchronous operations, enhancing overall user experience.",
-    technologies: ["React.js", "SCSS", "REST API"],
-  },
-  {
-    title: "Tour Management System",
-    type: "Semester Project",
-    // period: "Sep 2023 – Jan 2024",
-    description:
-      "Responsive platform for planning tours, managing bookings, and handling user management. Designed and implemented user-friendly interfaces for improved usability.",
-    technologies: ["HTML5", "CSS", "JavaScript"],
-  },
-];
+const Projects = () => {
+  const [showAll, setShowAll] = useState(false);
+  const visibleProjects = showAll ? projects : projects.slice(0, 4);
 
-const Projects = () => (
-  <section id="projects" className="py-20 px-6">
-    <div className="max-w-6xl mx-auto">
-      <SectionHeader title="Projects" />
-      <div className="grid md:grid-cols-2 gap-8">
-        {projects.map((project, i) => (
-          <ProjectCard key={i} {...project} />
-        ))}
+  return (
+    <section id="projects" className="technical-grid relative z-10 bg-[#172238]/90 px-6 py-20">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeader title="Selected Projects" />
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {visibleProjects.map((project, index) => (
+            <ProjectCard key={project.title} {...project} index={index} />
+          ))}
+        </div>
+        <div className="mt-10 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setShowAll((value) => !value)}
+            className="rounded-md border border-cyan-500/30 bg-cyan-500/10 px-7 py-3 font-bold text-cyan-200 transition-colors hover:border-cyan-400/50 hover:bg-cyan-500/20"
+            aria-expanded={showAll}
+          >
+            {showAll ? "Show less" : `Show more (${projects.length - 4})`}
+          </button>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default Projects;
