@@ -23,7 +23,7 @@ const skillGroups: SkillGroup[] = [
   {
     level: "Familiar",
     description: "Working knowledge supported by integrations or earlier work.",
-    skills: ["MongoDB", "Bootstrap", "jQuery", "Stripe / SafePay", "Google Maps API", "QuickBooks API"],
+    skills: ["AI / Machine Learning", "MongoDB", "Bootstrap", "jQuery", "Stripe / SafePay", "Google Maps API", "QuickBooks API"],
   },
 ];
 
